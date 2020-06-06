@@ -25,7 +25,7 @@ SECRET_KEY = 'b9_&j@urlmar&m8+x1$*9v8)jpseeomlcw4qlfwr+*1wh4tjl0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['todosoftoday.eba-pjfxreg8.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
