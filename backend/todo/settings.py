@@ -25,7 +25,7 @@ SECRET_KEY = 'b9_&j@urlmar&m8+x1$*9v8)jpseeomlcw4qlfwr+*1wh4tjl0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,12 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'rest_framework',
     'accounts',
     'todoers',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,3 +127,8 @@ STATIC_URL = '/static/'
 
 # Custom User Model Settings
 AUTH_USER_MODEL = 'accounts.User'
+
+# CORS Whitelist settings for sercurity reasons
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080",
+]

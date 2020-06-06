@@ -9,17 +9,25 @@
 <script>
 import TodoListItem from '@/components/todos/TodoListItem.vue'
 import { createNamespacedHelpers } from 'vuex'
-const { mapGetters } = createNamespacedHelpers('todo')
+const { mapGetters, mapActions } = createNamespacedHelpers('todo')
 
 export default {
   name: 'TodoList',
   components: {
       TodoListItem,
   },
+  methods: {
+    ...mapActions([
+      'sendGetAllTodosRequest'
+    ]),
+  },
   computed: {
     ...mapGetters([
       'todoList',
     ]),
+  },
+  mounted() {
+    this.sendGetAllTodosRequest()
   },
 }
 </script>

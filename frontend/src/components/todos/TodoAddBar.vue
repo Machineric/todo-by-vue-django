@@ -8,7 +8,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapMutations } = createNamespacedHelpers('todo')
+const { mapMutations, mapActions } = createNamespacedHelpers('todo')
 
 export default {
   name: 'TodoAddBar',
@@ -19,17 +19,19 @@ export default {
   },
   methods: {
     ...mapMutations([
-        'addTodoItem'
+      'addTodoItem'
+    ]),
+    ...mapActions([
+      'sendCreateTodoRequest'
     ]),
     addTodo() {
         if (this.userInput.trim()) {
         const newTodo = {
-        id: Date.now(),
-        content: this.userInput,
-        isDone: false,
+          content: this.userInput,
+          isDone: false,
         }
-        this.addTodoItem(newTodo)
-        this.userInput = ''
+          this.sendCreateTodoRequest(newTodo)
+          this.userInput = ''
         }
     },
   },

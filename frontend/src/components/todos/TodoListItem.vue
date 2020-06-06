@@ -1,19 +1,19 @@
 <template>
   <div class="d-flex justify-content-between w-100 h-100 align-items-center">
     <input 
-      @click="callUpdateCompletionOfTodoItem(todo.id)" 
-      :checked="todo.isDone" 
+      @click="callUpdateCompletionOfTodoItem(todo)" 
+      :checked="todo.is_done" 
       type="checkbox"
       class="eric-checkbox" 
     >
     <span 
       class="ml-3 todo-content" 
-      :class="{ done: todo.isDone }"
+      :class="{ done: todo.is_done }"
     >
       {{ todo.content }}
     </span>
     <button 
-      @click="callDeleteTodoItem(todo.id)"
+      @click="callDeleteTodoItem(todo)"
       class="btn btn-danger text-white btn__delete"
     >
       삭제
@@ -23,7 +23,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapMutations } = createNamespacedHelpers('todo')
+const { mapMutations, mapActions } = createNamespacedHelpers('todo')
 
 export default {
   name: 'TodoListItem',
@@ -37,11 +37,16 @@ export default {
       'updateCompletionOfTodoItem',
       'deleteTodoItem',
     ]),
-    callUpdateCompletionOfTodoItem(todoId) {
-      this.updateCompletionOfTodoItem(todoId)
+    ...mapActions([
+      'sendUpdateTodoRequest',
+      'sendDeleteTodoRequest',
+    ]),
+    callUpdateCompletionOfTodoItem(todo) {
+      this.sendUpdateTodoRequest(todo)
+
     },
-    callDeleteTodoItem(todoId) {
-      this.deleteTodoItem(todoId)
+    callDeleteTodoItem(todo) {
+      this.sendDeleteTodoRequest(todo)
     },
   },
 }

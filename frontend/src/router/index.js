@@ -6,7 +6,7 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'TodosOfTodayView',
+    name: 'LandingPageView',
     component: () => import('../views/todos/TodosOfTodayView.vue')
   },
   {
