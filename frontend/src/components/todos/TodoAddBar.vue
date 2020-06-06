@@ -14,7 +14,7 @@ export default {
   name: 'TodoAddBar',
   data() {
     return {
-        userInput: '',
+      userInput: '',
     }
   },
   methods: {

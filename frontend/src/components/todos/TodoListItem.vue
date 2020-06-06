@@ -29,7 +29,7 @@ export default {
   name: 'TodoListItem',
   props: {
     todo: {
-        type: Object,
+      type: Object,
     },
   },
   methods: {

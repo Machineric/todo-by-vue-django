@@ -42,6 +42,7 @@ const actions = {
   sendGetAllTodosRequest({ commit }) {
     axios.get(TODOS_API_BASE_URL)
     .then(res => {
+        console.log(res)
         commit('setTodoList', res.data)
       })
   },
