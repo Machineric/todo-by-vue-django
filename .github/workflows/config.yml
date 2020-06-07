@@ -27,6 +27,7 @@ jobs:
       - name: Install Python dependencies
         working-directory: ./backend
         run: |
+          pip install wheel
           pip install awscli
           pip install awsebcli
 
