@@ -28,7 +28,7 @@ jobs:
         working-directory: ./backend
         run: |
           pip install wheel awscli awsebcli
-          
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -43,6 +43,7 @@ jobs:
           aws s3 sync ./dist s3://todosoftoday
       
       - name: Deploy the server to the AWS EB
-        working-directory: ./backend
-        run: eb deploy
+        run: | 
+          cd backend
+          eb deploy
         
