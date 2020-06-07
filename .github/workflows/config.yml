@@ -27,8 +27,7 @@ jobs:
       - name: Install Python dependencies
         working-directory: ./backend
         run: |
-          pip install wheel awscli awsebcli
-          export PATH=LOCAL_PATH:$PATH
+          pip install --upgrade pip awsebcli
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
