@@ -45,5 +45,6 @@ jobs:
       - name: Deploy the server to the AWS EB
         run: | 
           cd backend
+          pip install awsebcli
           eb deploy
         
