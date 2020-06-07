@@ -28,6 +28,7 @@ jobs:
         working-directory: ./backend
         run: |
           pip install wheel awscli awsebcli
+          export PATH=LOCAL_PATH:$PATH
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -45,6 +46,5 @@ jobs:
       - name: Deploy the server to the AWS EB
         run: | 
           cd backend
-          pip install awsebcli
           eb deploy
         
