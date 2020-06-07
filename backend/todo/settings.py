@@ -130,4 +130,5 @@ AUTH_USER_MODEL = 'accounts.User'
 # CORS Whitelist settings for sercurity reasons
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
+    'http://todosoftoday-dev.ap-northeast-2.elasticbeanstalk.com',
 ]
