@@ -20,11 +20,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Node dependencies
+        working-directory: ./frontend
         run: |
-          cd frontend
           npm install
-          cd ..
       
+      - name: Install Python dependencies
+        working-directory: ./backend
+        run: |
+          pip install -r requirements.txt
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -38,16 +42,8 @@ jobs:
           npm run build
           aws s3 sync ./dist s3://todosoftoday
       
-      - name: Generate deployment package
-        working-directory: ./backend
-        run: zip deploy.zip *
-
       - name: Deploy the server to the AWS EB
-        uses: einaregilsson/beanstalk-deploy@v10
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: todosoftoday
-          environment_name: todosoftoday-dev
-          version_label: 2
-          region: ap-northeast-2
+        working-directory: ./backend
+        run: |
+          eb deploy
+        
