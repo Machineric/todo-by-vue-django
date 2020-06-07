@@ -33,13 +33,13 @@ jobs:
           aws-region: ap-northeast-2
       
       - name: Deploy the client to the AWS S3
-        working-directory: /frontend
+        working-directory: ./frontend
         run: |
           npm run build
           aws s3 sync ./dist s3://todosoftoday
       
       - name: Generate deployment package
-        working-directory: /backend
+        working-directory: ./backend
         run: zip deploy.zip *.js *.json *.html *.css
 
       - name: Deploy the server to the AWS EB
