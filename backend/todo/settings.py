@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b9_&j@urlmar&m8+x1$*9v8)jpseeomlcw4qlfwr+*1wh4tjl0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['todosoftoday-dev.eba-symdykcm.ap-northeast-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['todosoftoday-dev.ap-northeast-2.elasticbeanstalk.com']
 
 
 # Application definition
