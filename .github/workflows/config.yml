@@ -25,18 +25,6 @@ jobs:
           npm install
           cd ..
       
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install Python dependencies
-        run: |
-          cd backend
-          python -m pip install --upgrade pip
-          pip install awscli
-          pip install awsebcli
-          cd ..
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -45,12 +33,15 @@ jobs:
           aws-region: ap-northeast-2
       
       - name: Deploy the client to the AWS S3
+        working-directory: /frontend
         run: |
-          cd frontend
           npm run build
           aws s3 sync ./dist s3://todosoftoday
-          cd ..
       
+      - name: Generate deployment package
+        working-directory: /backend
+        run: zip deploy.zip *.js *.json *.html *.css
+
       - name: Deploy the server to the AWS EB
         uses: einaregilsson/beanstalk-deploy@v10
         with:
@@ -58,5 +49,5 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: todosoftoday
           environment_name: todosoftoday-dev
-          version_label: 0.5
+          version_label: 2
           region: ap-northeast-2
