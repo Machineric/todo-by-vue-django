@@ -42,8 +42,18 @@ jobs:
           npm run build 
           aws s3 sync ./dist s3://todosoftoday
       
+      - name: Generate deployment package
+        run: zip deploy.zip backend
+      
       - name: Deploy the server to the AWS EB
-        run: | 
-          cd backend
-          eb deploy
-        
+        uses: einaregilsson/beanstalk-deploy@v10
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: todosoftoday
+          environment_name: todosoftoday-dev
+          version_label: 3
+          region: ap-northeast-2
+          deployment_package: deploy.zip
+            
+          
