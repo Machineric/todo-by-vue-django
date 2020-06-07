@@ -3,6 +3,8 @@ import axios from 'axios'
 
 const state = () => ({
   todoList: [],
+  searchedTodoList: [],
+  isSearching: false,
 })
 
 const getters = {
@@ -10,6 +12,12 @@ const getters = {
   todoList: state => {
     return state.todoList
   },
+  searchedTodoList: state => {
+    return state.searchedTodoList
+  },
+  isSearching: state => {
+    return state.isSearching
+  }
 }
 
 const mutations = {
@@ -35,6 +43,14 @@ const mutations = {
       return todo.id !== todoId
     })
   },
+  searchTodoList(state, userInput) {
+    state.isSearching = true
+    state.searchedTodoList = state.todoList.filter(todo => {
+      if (todo.content.includes(userInput)) {
+        return todo
+      }
+    })
+  },
 }
 
 const actions = {
@@ -42,7 +58,6 @@ const actions = {
   sendGetAllTodosRequest({ commit }) {
     axios.get(TODOS_API_BASE_URL)
     .then(res => {
-        console.log(res)
         commit('setTodoList', res.data)
       })
   },

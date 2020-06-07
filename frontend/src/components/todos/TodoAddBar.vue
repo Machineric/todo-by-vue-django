@@ -26,9 +26,9 @@ export default {
     ]),
     addTodo() {
         if (this.userInput.trim()) {
-        const newTodo = {
-          content: this.userInput,
-          isDone: false,
+          const newTodo = {
+            content: this.userInput,
+            isDone: false,
         }
           this.sendCreateTodoRequest(newTodo)
           this.userInput = ''

@@ -19,7 +19,7 @@
         </ul>
       </div>
       <div class="search__section">
-        <input class="eric-searchBar" type="text" placeholder="어떤 일이 있었지?">
+        <TodoSearchBar/>
       </div>
       <div class="eric-navbar__right w-lg-100 w-sm-10 d-inline-block ml-auto">
         <i class="far fa-bell"></i>
@@ -29,6 +29,16 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import TodoSearchBar from '@/components/todos/TodoSearchBar.vue'
+
+export default {
+  components: {
+    TodoSearchBar,
+  },
+}
+</script>
 
 <style>
 * {

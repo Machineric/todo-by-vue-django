@@ -1,7 +1,14 @@
 <template>
   <div>
-    <div v-for="todo in todoList" :key="todo.id" class="todoBox w-100">
-      <TodoListItem :todo="todo"/>
+    <div v-if="isSearching">
+      <div v-for="todo in searchedTodoList" :key="todo.id" class="todoBox w-100">
+        <TodoListItem :todo="todo"/>
+      </div>
+    </div>
+    <div v-else>
+      <div v-for="todo in todoList" :key="todo.id" class="todoBox w-100">
+        <TodoListItem :todo="todo"/>
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +31,8 @@ export default {
   computed: {
     ...mapGetters([
       'todoList',
+      'searchedTodoList',
+      'isSearching',
     ]),
   },
   mounted() {
