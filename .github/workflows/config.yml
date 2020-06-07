@@ -40,7 +40,7 @@ jobs:
       
       - name: Generate deployment package
         working-directory: ./backend
-        run: zip deploy.zip *.js *.json *.html *.css
+        run: zip deploy.zip *
 
       - name: Deploy the server to the AWS EB
         uses: einaregilsson/beanstalk-deploy@v10
